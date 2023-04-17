@@ -28,17 +28,23 @@ function ActionTable() {
           </tr>
         </thead>
         <tbody>
-          {actionData.map((e) => (
-            <tr>
-              <td>{e.id}</td>
-              <td>{e.name}</td>
-              <td>{e.id_status}</td>
-              <td>{e.date}</td>
-              <td>{e.time}</td>
-              <td>{e.id_user}</td>
-              <td>{e.id_report}</td>
-            </tr>
-          ))}
+          {actionData.map((e) => {
+            const oridate = e.date;
+            const modifiedDate = oridate
+              .replace("T21:00:00.000Z", "")
+              .replaceAll(`-`, `/`);
+            return (
+              <tr>
+                <td>{e.id}</td>
+                <td>{e.name}</td>
+                <td>{e.id_status}</td>
+                <td>{modifiedDate}</td>
+                <td>{e.time}</td>
+                <td>{e.id_user}</td>
+                <td>{e.id_report}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

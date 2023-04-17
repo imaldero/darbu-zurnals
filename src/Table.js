@@ -31,20 +31,26 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {issueData.map((e) => (
-            <tr>
-              <td>{e.id}</td>
-              <td>{e.date}</td>
-              <td>{e.time}</td>
-              <td>{e.id_user}</td>
-              <td>{e.id_source}</td>
-              <td>{e.name}</td>
-              <td>{e.id_obj}</td>
-              <td>{e.id_device}</td>
-              <td>{e.id_type}</td>
-              <td>{e.note}</td>
-            </tr>
-          ))}
+          {issueData.map((e) => {
+            const oridate = e.date;
+            const modifiedDate = oridate
+              .replace("T21:00:00.000Z", "")
+              .replaceAll(`-`, `/`);
+            return (
+              <tr>
+                <td>{e.id}</td>
+                <td>{modifiedDate}</td>
+                <td>{e.time}</td>
+                <td>{e.id_user}</td>
+                <td>{e.id_source}</td>
+                <td>{e.name}</td>
+                <td>{e.id_obj}</td>
+                <td>{e.id_device}</td>
+                <td>{e.id_type}</td>
+                <td>{e.note}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

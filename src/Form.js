@@ -13,10 +13,12 @@ function Form({ onPageChange }) {
       let names;
       const response = await fetch(`http://127.0.0.1:3000/${url}`);
       const data = await response.json();
-      if (url === "users" || url === "objects") {
+      if (url === "objects") {
         names = data.map((e) => e.name);
       } else if (url === `source` || url === `device` || url === `issue-type`) {
         names = data.map((e) => e.name_en);
+      } else if (url === "users") {
+        names = data.map((e) => `${e.vards} ${e.uzv}`);
       }
       if (url === `users`) setUsers(names);
       if (url === `objects`) setObjects(names);
@@ -101,23 +103,12 @@ function Form({ onPageChange }) {
         <div className="inputs">
           <div className="left-column">
             <h3>Name</h3>
-            <select required name="name" defaultValue={""}>
-              <option value=""></option>
-              <option>Andrejs Bobkins</option>
-              <option>Andrius Boznis</option>
-              <option>Arunas Mazuna</option>
-              <option>Lauris Svars</option>
-              <option>Dynniq Team</option>
-              <option>Jaroslaw Studzinski</option>
-              <option>Lauris Svars</option>
-              <option>Mariusz Karp</option>
-              <option>Maris Mielavs</option>
-              <option>Maris Skudra</option>
-              <option>Michal Gladysz</option>
-              <option>Pawel Wojcik</option>
-              <option>POIC</option>
-              <option>Uldis Grunde</option>
-            </select>
+            <textarea
+              required
+              name="name"
+              maxLength={254}
+              className="remark"
+            ></textarea>
             <h3>Source</h3>
             <select required name="id_source" defaultValue={""}>
               <option value=""></option>

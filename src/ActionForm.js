@@ -13,7 +13,7 @@ function ActionForm({ onPageChange }) {
         const response = await fetch(`http://127.0.0.1:3000/${url}`);
         const data = await response.json();
         if (url === "users") {
-          names = data.map((e) => e.name);
+          names = data.map((e) => `${e.vards} ${e.uzv}`);
         } else if (url === "status") {
           names = data.map((e) => e.name_en);
         } else if (url === `issueids`) {
@@ -100,23 +100,12 @@ function ActionForm({ onPageChange }) {
         <div className="inputs">
           <div className="left-column">
             <h3>Name</h3>
-            <select required name="name" defaultValue={""}>
-              <option value=""></option>
-              <option>Andrejs Bobkins</option>
-              <option>Andrius Boznis</option>
-              <option>Arunas Mazuna</option>
-              <option>Lauris Svars</option>
-              <option>Dynniq Team</option>
-              <option>Jaroslaw Studzinski</option>
-              <option>Lauris Svars</option>
-              <option>Mariusz Karp</option>
-              <option>Maris Mielavs</option>
-              <option>Maris Skudra</option>
-              <option>Michal Gladysz</option>
-              <option>Pawel Wojcik</option>
-              <option>POIC</option>
-              <option>Uldis Grunde</option>
-            </select>
+            <textarea
+              required
+              name="name"
+              maxLength={254}
+              className="remark"
+            ></textarea>
             <h3>Status</h3>
             <select required name="id_status" defaultValue={""}>
               <option value=""></option>
@@ -137,7 +126,7 @@ function ActionForm({ onPageChange }) {
                 </option>
               ))}
             </select>
-            <h3>Issue</h3>
+            <h3>Issue ID</h3>
             <select required name="id_report" defaultValue={""}>
               <option value=""></option>
               {issueids.map((id) => (
