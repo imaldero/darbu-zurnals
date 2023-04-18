@@ -19,10 +19,9 @@ app.listen(3000, (err) => {
 });
 
 const con = mysql.createConnection({
-  host: `auth-db483.hstgr.io`,
-  user: `u353443769_aras`,
-  password: `testadmin`,
-  database: `u353443769_aras`,
+  host: `localhost`,
+  user: `root`,
+  database: `darbu_zurnals`,
   multipleStatements: true,
 });
 
